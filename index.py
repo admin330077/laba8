@@ -1,26 +1,25 @@
-contry = ['Германия',"США","Россия","Франция"]
-town_germany = ['Лейпциг',"Нюрнберг","Берлин","Гамбург","Мюнхен"]
-towm_usa = ["Нью-Йорк","Сан-Франциско","Чикаго","Лос-Анджелес","Вашингтон"]
-town_russia = ["Москва","Санкт-Петербург","Екатеринбург","Нижний Новгород","Казань"]
-towns_franch = ["Париж","Страсбург","Лион","Марсель","Ницца"]
-for i in contry:
-    print(i)
+from tkinter import *
+from tkinter import messagebox
 
-print('выберите страну')
+root = Tk()
+root.title("METANIT.COM")
+root.geometry("250x200")
 
-user = input()
 
-if user == 'Германия':
-    for t in town_germany:
-        print(t)
-if user == 'США':
-    for t in towm_usa:
-        print(t)
-        
-if user == 'Россия':
-    for t in town_russia:
-        print(t)
-if user == 'Франция':
-    for t in towns_franch:
-        print(t)
-        
+contry = ["Германия" , "США" ,"Россия","Франция"]
+country_var =  Variable(value=contry)
+contry_listbox = Listbox(listvariable=country_var)
+contry_listbox.pack(anchor=NW, fill=X, padx=5, pady=5)
+f = Frame()
+f.pack(side=LEFT, padx=10)
+entry = Entry(f)
+
+def validate_input():
+    selected_country = contry_listbox.get(ACTIVE)
+    if selected_country == "США":
+        add_item()
+    else:
+        messagebox.showerror('Ошибка', 'Пожалуйста, выберите страну')
+Button(f, text="choose", command=validate_input ).pack(fill=X)
+
+root.mainloop()
